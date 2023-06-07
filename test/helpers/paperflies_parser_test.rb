@@ -9,19 +9,25 @@ class PaperfliesParserTest < ActiveSupport::TestCase
     end
   test "hotel id can be extracted from json" do
     @data.each do |hotel|
-      assert_equal PaperfliesParser.new(hotel).hotel_id, hotel['hotel_id']
+      pp = PaperfliesParser.new(hotel)
+      assert_not_nil pp.address
+      assert_equal pp.hotel_id, hotel['hotel_id']
     end
   end
 
   test "destination id can be extracted from json" do
     @data.each do |hotel|
-      assert_equal PaperfliesParser.new(hotel).destination_id, hotel['destination_id']
+      pp = PaperfliesParser.new(hotel)
+      assert_not_nil pp.address
+      assert_equal pp.destination_id, hotel['destination_id']
     end
   end
 
   test "hotel name can be extracted from json" do
     @data.each do |hotel|
-      assert_equal PaperfliesParser.new(hotel).name, hotel['hotel_name']
+      pp = PaperfliesParser.new(hotel)
+      assert_not_nil pp.address
+      assert_equal pp.name, hotel['hotel_name']
     end
   end
 
