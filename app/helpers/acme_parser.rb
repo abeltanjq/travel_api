@@ -28,4 +28,8 @@ class AcmeParser < HotelParser
     def parse_city
         @city = @json['City']
     end
+
+    def parse_country
+        @country = @json['Country']
+    end
 end

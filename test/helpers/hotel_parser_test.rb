@@ -30,7 +30,7 @@ class HotelParserTest < ActiveSupport::TestCase
     assert_raises(NotImplementedError, /parse_name/) { ChildCParser.new('') }
   end
 
-  test "latitude, longitude andc city are nil by default" do  
+  test "latitude, longitude, city and country are nil by default" do  
     class ChildDParser < HotelParser
       
       private
@@ -43,6 +43,7 @@ class HotelParserTest < ActiveSupport::TestCase
     assert_nil ChildDParser.new('').lat
     assert_nil ChildDParser.new('').lng
     assert_nil ChildDParser.new('').city
+    assert_nil ChildDParser.new('').country
   end
 
   test "that error is raised when parse_address is not implemented" do  

@@ -48,4 +48,10 @@ class AcmeParserTest < ActiveSupport::TestCase
       assert_equal AcmeParser.new(hotel).city, hotel['City']
     end
   end
+
+  test "country can be extracted from json" do
+    @data.each do |hotel|
+      assert_equal AcmeParser.new(hotel).country, hotel['Country']
+    end
+  end
 end
