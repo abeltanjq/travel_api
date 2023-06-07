@@ -60,4 +60,10 @@ class AcmeParserTest < ActiveSupport::TestCase
       assert_equal AcmeParser.new(hotel).postal_code, hotel['PostalCode']
     end
   end
+
+  test "description can be extracted from json" do
+    @data.each do |hotel|
+      assert_equal AcmeParser.new(hotel).description, hotel['Description']
+    end
+  end
 end
