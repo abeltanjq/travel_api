@@ -24,4 +24,10 @@ class AcmeParserTest < ActiveSupport::TestCase
       assert_equal AcmeParser.new(hotel).name, hotel['Name']
     end
   end
+
+  test "latitude can be extracted from json" do
+    @data.each do |hotel|
+      assert_equal AcmeParser.new(hotel).lat, hotel['Latitude']
+    end
+  end
 end

@@ -24,4 +24,10 @@ class PatagoniaParserTest < ActiveSupport::TestCase
       assert_equal PatagoniaParser.new(hotel).name, hotel['name']
     end
   end
+
+  test "latitude can be extracted from json" do
+    @data.each do |hotel|
+      assert_equal PatagoniaParser.new(hotel).lat, hotel['lat']
+    end
+  end
 end

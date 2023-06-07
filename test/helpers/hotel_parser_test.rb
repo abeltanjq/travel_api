@@ -10,9 +10,7 @@ class HotelParserTest < ActiveSupport::TestCase
   test "that error is raised when parse_destination_id is not implemented" do  
     class ChildParser < HotelParser
       private
-      def parse_hotel_id
-        'dummy'
-      end
+      def parse_hotel_id; 'dummy' end
     end
 
     assert_raises(NotImplementedError) { ChildParser.new('') }
@@ -21,15 +19,24 @@ class HotelParserTest < ActiveSupport::TestCase
   test "that error is raised when parse_name is not implemented" do  
     class ChildParser < HotelParser
       private
-      def parse_hotel_id
-        'dummy'
-      end
+      def parse_hotel_id; 'dummy' end
 
-      def parse_destination_id
-        'dummy'
-      end
+      def parse_destination_id; 'dummy' end
     end
 
     assert_raises(NotImplementedError) { ChildParser.new('') }
+  end
+
+  test "latitude is nil by default" do  
+    class ChildParser < HotelParser
+      private
+      def parse_hotel_id; 'dummy' end
+
+      def parse_destination_id; 'dummy' end
+
+      def parse_name; 'dummy' end
+    end
+
+    assert_nil ChildParser.new('').lat
   end
 end

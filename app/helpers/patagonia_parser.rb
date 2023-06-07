@@ -12,4 +12,8 @@ class PatagoniaParser < HotelParser
     def parse_name
         @name = @json['name']
     end
+
+    def parse_lat
+        @lat = @json['lat']
+    end
 end
