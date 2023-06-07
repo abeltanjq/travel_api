@@ -5,7 +5,7 @@ class HotelParser
     end
 
     attr_reader :hotel_id, :destination_id, :name, :lat, :lng, :address, :city,
-                :country
+                :country, :postal_code
 
     private
 
@@ -18,6 +18,7 @@ class HotelParser
         parse_address
         parse_city
         parse_country
+        parse_postal_code
     end
 
     def parse_hotel_id
@@ -50,5 +51,9 @@ class HotelParser
 
     def parse_country
         @country = nil
+    end
+
+    def parse_postal_code
+        @postal_code = nil
     end
 end

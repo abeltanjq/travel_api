@@ -32,4 +32,8 @@ class AcmeParser < HotelParser
     def parse_country
         @country = @json['Country']
     end
+
+    def parse_postal_code
+        @postal_code = @json['PostalCode']
+    end
 end
