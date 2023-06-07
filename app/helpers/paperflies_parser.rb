@@ -12,4 +12,8 @@ class PaperfliesParser < HotelParser
     def parse_name
         @name = @json['hotel_name']
     end
+
+    def parse_address
+        @address = @json['location']['address']
+    end
 end

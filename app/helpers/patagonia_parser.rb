@@ -20,4 +20,8 @@ class PatagoniaParser < HotelParser
     def parse_lng
         @lng = @json['lng']
     end
+
+    def parse_address
+        @address = @json['address']
+    end
 end

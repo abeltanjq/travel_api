@@ -24,4 +24,12 @@ class PaperfliesParserTest < ActiveSupport::TestCase
       assert_equal PaperfliesParser.new(hotel).name, hotel['hotel_name']
     end
   end
+
+  test "address name can be extracted from json" do
+    @data.each do |hotel|
+      pp = PaperfliesParser.new(hotel)
+      assert_not_nil pp.address
+      assert_equal pp.address, hotel['location']['address']
+    end
+  end
 end
