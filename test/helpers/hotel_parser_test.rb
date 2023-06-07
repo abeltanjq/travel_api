@@ -23,11 +23,11 @@ class HotelParserTest < ActiveSupport::TestCase
 
       def parse_destination_id; 'dummy' end
     end
-
+    
     assert_raises(NotImplementedError) { ChildParser.new('') }
   end
 
-  test "latitude is nil by default" do  
+  test "latitude and longitude are nil by default" do  
     class ChildParser < HotelParser
       private
       def parse_hotel_id; 'dummy' end
@@ -38,5 +38,6 @@ class HotelParserTest < ActiveSupport::TestCase
     end
 
     assert_nil ChildParser.new('').lat
+    assert_nil ChildParser.new('').lng
   end
 end

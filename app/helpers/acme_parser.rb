@@ -16,4 +16,8 @@ class AcmeParser < HotelParser
     def parse_lat
         @lat = @json['Latitude']
     end
+
+    def parse_lng
+        @lng = @json['Longitude']
+    end
 end
