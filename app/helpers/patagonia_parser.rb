@@ -28,4 +28,8 @@ class PatagoniaParser < HotelParser
     def parse_description
         @description = @json['info']
     end
+
+    def parse_amenities
+        @amenities = @json['amenities']
+    end
 end

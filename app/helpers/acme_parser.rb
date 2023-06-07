@@ -40,4 +40,8 @@ class AcmeParser < HotelParser
     def parse_description
         @description = @json['Description']
     end
+
+    def parse_amenities
+        @amenities = @json['Facilities']
+    end
 end

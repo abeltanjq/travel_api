@@ -48,4 +48,10 @@ class PatagoniaParserTest < ActiveSupport::TestCase
       assert_equal PatagoniaParser.new(hotel).description, hotel['info']
     end
   end
+
+  test "amenities can be extracted from json" do
+    @data.each do |hotel|
+      assert_equal PatagoniaParser.new(hotel).amenities, hotel['amenities']
+    end
+  end
 end

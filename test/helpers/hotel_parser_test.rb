@@ -39,6 +39,7 @@ class HotelParserTest < ActiveSupport::TestCase
       def parse_name; 'dummy' end
       def parse_address; 'dummy' end
       def parse_description; 'dummy' end
+      def parse_amenities; 'dummy' end
     end
 
     assert_nil ChildDParser.new('').lat
@@ -71,5 +72,19 @@ class HotelParserTest < ActiveSupport::TestCase
     end
 
     assert_raises(NotImplementedError, /parse_description/) { ChildFParser.new('') }
+  end
+
+  test "that error is raised when parse_amenities is not implemented" do
+    class ChildGParser < HotelParser
+      
+      private
+      def parse_hotel_id; 'dummy' end
+      def parse_destination_id; 'dummy' end
+      def parse_name; 'dummy' end
+      def parse_address; 'dummy' end
+      def parse_description; 'dummy' end
+    end
+
+    assert_raises(NotImplementedError, /parse_amenities/) { ChildGParser.new('') }
   end
 end

@@ -54,4 +54,11 @@ class PaperfliesParserTest < ActiveSupport::TestCase
       assert_equal pp.description, hotel['details']
     end
   end
+
+  test "amenities can be extracted from json" do
+    @data.each do |hotel|
+      pp = PaperfliesParser.new(hotel)
+      assert_equal pp.amenities, hotel['amenities']
+    end
+  end
 end
