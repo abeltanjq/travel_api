@@ -4,7 +4,7 @@ class HotelParser
         parse_hotel
     end
 
-    attr_reader :hotel_id, :destination_id, :name, :lat, :lng, :address
+    attr_reader :hotel_id, :destination_id, :name, :lat, :lng, :address, :city
 
     private
 
@@ -15,6 +15,7 @@ class HotelParser
         parse_lat
         parse_lng
         parse_address
+        parse_city
     end
 
     def parse_hotel_id
@@ -39,5 +40,9 @@ class HotelParser
 
     def parse_address
         raise NotImplementedError, 'Subclass must implement parse_address.' 
+    end
+
+    def parse_city
+        @city = nil
     end
 end

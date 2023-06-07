@@ -24,4 +24,8 @@ class AcmeParser < HotelParser
     def parse_address
         @address = @json['Address']
     end
+
+    def parse_city
+        @city = @json['City']
+    end
 end
