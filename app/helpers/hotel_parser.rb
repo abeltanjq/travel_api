@@ -5,7 +5,7 @@ class HotelParser
     end
 
     attr_reader :hotel_id, :destination_id, :name, :lat, :lng, :address, :city,
-                :country, :postal_code, :description, :amenities, :images
+                :country, :postal_code, :description, :amenities, :images, :booking_conditions
 
     private
 
@@ -22,6 +22,7 @@ class HotelParser
         parse_description
         parse_amenities
         parse_images
+        parse_booking_conditions
     end
 
     def parse_hotel_id
@@ -70,5 +71,9 @@ class HotelParser
 
     def parse_images
         @images = nil
+    end
+
+    def parse_booking_conditions
+        @booking_conditions = nil
     end
 end

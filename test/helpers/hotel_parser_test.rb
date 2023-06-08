@@ -48,6 +48,7 @@ class HotelParserTest < ActiveSupport::TestCase
     assert_nil ChildDParser.new('').country
     assert_nil ChildDParser.new('').postal_code
     assert_nil ChildDParser.new('').images
+    assert_nil ChildDParser.new('').booking_conditions
   end
 
   test "that error is raised when parse_address is not implemented" do  

@@ -32,4 +32,8 @@ class PaperfliesParser < HotelParser
     def parse_images
         @images = @json['images']
     end
+
+    def parse_booking_conditions
+        @booking_conditions = @json['booking_conditions']
+    end
 end
