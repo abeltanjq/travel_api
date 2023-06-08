@@ -28,4 +28,8 @@ class PaperfliesParser < HotelParser
     def parse_amenities
         @amenities = @json['amenities']
     end
+
+    def parse_images
+        @images = @json['images']
+    end
 end

@@ -61,4 +61,12 @@ class PaperfliesParserTest < ActiveSupport::TestCase
       assert_equal pp.amenities, hotel['amenities']
     end
   end
+
+  test "images can be extracted from json" do
+    @data.each do |hotel|
+      pp = PaperfliesParser.new(hotel)
+      assert_not_nil pp.images
+      assert_equal pp.images, hotel['images']
+    end
+  end
 end
