@@ -1,10 +1,8 @@
-require 'http'
-
-class HotelsController < ApplicationController
+class DestinationsController < ApplicationController
     include Formatable
 
-    def index
-        @hotels = Hotel.where(hotel_id: params[:ids])
+    def show
+        @hotels = Hotel.where(destination_id: params[:id])
         formatted_hotels = @hotels.map do |h|
             format_hotel h
         end

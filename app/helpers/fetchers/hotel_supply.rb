@@ -26,6 +26,7 @@ module Fetchers
             if curr_val.is_a?(String)
                 return value if value.size > curr_val.size
             end
+            curr_val
         end
 
         def merge_amenities(curr_amenities, value)
