@@ -2,6 +2,14 @@
 
 [Task](https://gist.github.com/melvrickgoh/e7266f09bc346e6624e3db5843f25637)
 
+
+# Running Test
+Run:
+```sh
+rake db:test:prepare # When running test for the first time
+bin/rails test
+```
+
 - [ ] Parsers are at `app/helpers/*_parser.rb`
    - Using Template pattern so that whenever there is a new supplier, we can simply add a new parser file by inheriting from `HotelParser`.
 
