@@ -1,11 +1,9 @@
 require "test_helper"
-require "json"
-
 
 class PaperfliesParserTest < ActiveSupport::TestCase
     def setup
         @json_data = File.read(Rails.root.join('test', 'fixtures/files/paperflies.json'))
-        @data = JSON.parse(@json_data)
+        @data = ActiveSupport::JSON.decode(@json_data)
     end
   test "hotel id can be extracted from json" do
     @data.each do |hotel|
@@ -58,23 +56,38 @@ class PaperfliesParserTest < ActiveSupport::TestCase
   test "amenities can be extracted from json" do
     @data.each do |hotel|
       pp = PaperfliesParser.new(hotel)
-      assert_equal pp.amenities, hotel['amenities']
+      assert_equal pp.amenities, hotel['amenities'].to_json
     end
   end
 
-  test "images can be extracted from json" do
-    @data.each do |hotel|
-      pp = PaperfliesParser.new(hotel)
-      assert_not_nil pp.images
-      assert_equal pp.images, hotel['images']
-    end
+  test "images formatted from json" do
+    expected_format = {
+      rooms: [
+        {
+          link: "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/2.jpg",
+          description: "Double room"
+        },
+        {
+          link: "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/3.jpg",
+          description: "Double room"
+        }
+      ],
+      site: [
+        {
+          link: "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/1.jpg",
+          description: "Front"
+        }
+      ]
+    }
+
+    assert_equal expected_format.to_json, PaperfliesParser.new(@data[0]).images
   end
 
   test "booking_conditions can be extracted from json" do
     @data.each do |hotel|
       pp = PaperfliesParser.new(hotel)
       assert_not_nil pp.booking_conditions
-      assert_equal pp.booking_conditions, hotel['booking_conditions']
+      assert_equal pp.booking_conditions, hotel['booking_conditions'].to_json
     end
   end
 end

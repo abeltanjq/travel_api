@@ -42,6 +42,21 @@ class AcmeParser < HotelParser
     end
 
     def parse_amenities
-        @amenities = @json['Facilities']
+        amenities = @json['Facilities']
+        return nil if amenities.nil?
+        amenities_h = { general: [], room: [] }
+        amenities.map! do |amenity|
+            format_amenity(amenity)
+        end
+        
+        amenities.each do |amenity|
+            if Hotel::GENERAL_AMENITIES.include? amenity
+                amenities_h[:general] << amenity
+            elsif Hotel::ROOM_AMENITIES.include? amenity
+                amenities_h[:room] << amenity
+            end
+        end
+
+        @amenities = amenities_h.to_json
     end
 end

@@ -1,11 +1,9 @@
 require "test_helper"
-require "json"
-
 
 class PatagoniaParserTest < ActiveSupport::TestCase
     def setup
         @json_data = File.read(Rails.root.join('test', 'fixtures/files/patagonia.json'))
-        @data = JSON.parse(@json_data)
+        @data = ActiveSupport::JSON.decode(@json_data)
     end
   test "hotel id can be extracted from json" do
     @data.each do |hotel|
@@ -49,17 +47,38 @@ class PatagoniaParserTest < ActiveSupport::TestCase
     end
   end
 
-  test "amenities can be extracted from json" do
-    @data.each do |hotel|
-      assert_equal PatagoniaParser.new(hotel).amenities, hotel['amenities']
-    end
+  test "that amenities are formatted from json" do
+    expected_amenities = {
+      general: [],
+      room: ["aircon", "tv", "coffee machine", "kettle", "hair dryer", "iron", "tub"]
+    }
+    assert_equal expected_amenities.to_json, PatagoniaParser.new(@data[0]).amenities
   end
 
-  test "images can be extracted from json" do
-    @data.each do |hotel|
-      pp = PatagoniaParser.new(hotel)
-      assert_not_nil pp.images
-      assert_equal pp.images, hotel['images']
-    end
+  test "images formatted from json" do
+    expected_format = {
+      rooms: [
+          {
+            link: "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/2.jpg",
+            description: "Double room"
+          },
+          {
+            link: "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/4.jpg",
+            description: "Bathroom"
+          }
+        ],
+        amenities: [
+          {
+            link: "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/0.jpg",
+            description: "RWS"
+          },
+          {
+            link: "https://d2ey9sqrvkqdfs.cloudfront.net/0qZF/6.jpg",
+            description: "Sentosa Gateway"
+          }
+        ]
+    }
+
+    assert_equal expected_format.to_json, PatagoniaParser.new(@data[0]).images
   end
 end

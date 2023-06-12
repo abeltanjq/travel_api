@@ -1,11 +1,9 @@
 require "test_helper"
-require "json"
-
 
 class AcmeParserTest < ActiveSupport::TestCase
     def setup
         @json_data = File.read(Rails.root.join('test', 'fixtures/files/acme.json'))
-        @data = JSON.parse(@json_data)
+        @data = ActiveSupport::JSON.decode(@json_data)
     end
   test "hotel id can be extracted from json" do
     @data.each do |hotel|
@@ -67,9 +65,12 @@ class AcmeParserTest < ActiveSupport::TestCase
     end
   end
 
-  test "facilities can be extracted from json" do
-    @data.each do |hotel|
-      assert_equal AcmeParser.new(hotel).amenities.length, hotel['Facilities'].length
-    end
+  test "that facilities is formatted correctly from json" do
+    expected_amenities = {
+      general: ["pool", "business center", "wifi", "dry cleaning", "breakfast"],
+      room: []
+    }
+
+    assert_equal expected_amenities.to_json, AcmeParser.new(@data[0]).amenities
   end
 end

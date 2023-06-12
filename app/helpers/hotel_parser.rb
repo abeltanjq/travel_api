@@ -76,4 +76,12 @@ class HotelParser
     def parse_booking_conditions
         @booking_conditions = nil
     end
+
+    protected
+    def format_amenity(amenity)
+        # add a space between a lowercase and uppercase. eg. 'aB' -> 'a B'
+        amty = amenity.strip.gsub(/(?<=[a-z])(?=[A-Z])/, ' ')
+        amty.downcase!
+        amty == 'wi fi' ? 'wifi' : amty
+    end
 end

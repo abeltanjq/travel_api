@@ -26,14 +26,25 @@ class PaperfliesParser < HotelParser
     end
 
     def parse_amenities
-        @amenities = @json['amenities']
+        @amenities = @json['amenities'].to_json
     end
 
     def parse_images
-        @images = @json['images']
+        images = @json['images']
+        img_keys = images.keys
+        formatted_images = {}
+        img_keys.each do |k|
+            formatted_images[k] = images[k].map do |link_cap|
+                {
+                    link: link_cap["link"],
+                    description: link_cap["caption"]
+                }
+            end
+        end
+        @images = formatted_images.to_json
     end
 
     def parse_booking_conditions
-        @booking_conditions = @json['booking_conditions']
+        @booking_conditions = @json['booking_conditions'].to_json
     end
 end
