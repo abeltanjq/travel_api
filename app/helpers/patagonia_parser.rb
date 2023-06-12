@@ -41,7 +41,8 @@ class PatagoniaParser < HotelParser
             if Hotel::GENERAL_AMENITIES.include? amenity
                 amenities_h[:general] << amenity
             elsif Hotel::ROOM_AMENITIES.include? amenity
-                amenities_h[:room] << amenity
+                amen = amenity == 'tub' ? 'bathtub' : amenity
+                amenities_h[:room] << amen
             end
         end
 

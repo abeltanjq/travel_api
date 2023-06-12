@@ -50,7 +50,7 @@ class PatagoniaParserTest < ActiveSupport::TestCase
   test "that amenities are formatted from json" do
     expected_amenities = {
       general: [],
-      room: ["aircon", "tv", "coffee machine", "kettle", "hair dryer", "iron", "tub"]
+      room: ["aircon", "tv", "coffee machine", "kettle", "hair dryer", "iron", "bathtub"]
     }
     assert_equal expected_amenities.to_json, PatagoniaParser.new(@data[0]).amenities
   end
