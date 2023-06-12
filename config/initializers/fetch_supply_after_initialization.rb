@@ -4,8 +4,6 @@ require_relative "../../app/helpers/fetchers/paperflies_hotels"
 
 Rails.application.config.after_initialize do
     unless Rails.env.test?
-        Fetchers::AcmeHotels.new.load_hotels
-        Fetchers::PaperfliesHotels.new.load_hotels
-        Fetchers::PatagoniaHotels.new.load_hotels
+        FetchSuppliesJob.perform_async
     end
 end
