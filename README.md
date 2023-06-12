@@ -38,14 +38,14 @@ Getting hotels by ids
 ```sh
 /hotels?ids[]=iJhz&ids[]=SjyX&ids[]=f8c9
 
-eg. curl 'http://127.0.0.1:3000/hotels?ids[]=iJhz&ids[]=SjyX&ids[]=f8c9'
+eg. curl 'https://rocky-refuge-69713.herokuapp.com/hotels?ids[]=iJhz&ids[]=SjyX&ids[]=f8c9'
 ```
 
 Getting destination by id.
 ```sh
 /destinations/:id
 
-eg. curl 'http://127.0.0.1:3000/destinations/5432'
+eg. curl 'https://rocky-refuge-69713.herokuapp.com/destinations/5432'
 ```
 
 # Main files
