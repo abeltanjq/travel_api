@@ -67,6 +67,9 @@ eg. curl 'https://rocky-refuge-69713.herokuapp.com/destinations/5432'
 ## Sidekiq Job
 `app/sidekiq/fetch_supplies_job.rb` -> Used the fetchers to get data from suppliers.
 
+## Scheduled Job
+`config/schedule.yml` -> Fetches supply at a regular basis. Set it at 3am every Mon, Wed and Fri.
+
 # Optimizations
 Data procurement - Fetching of data is done by a non-blocking async job that is triggered after initialization of rails app.
 
